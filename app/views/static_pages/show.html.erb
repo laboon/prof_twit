@@ -1,7 +1,7 @@
 <html>
 <h1>Results</h1>
 Results for <%= params[:twitname] %><p>
-<%
+<%=
 require 'rubygems'
 require 'twitter'
 
@@ -54,9 +54,9 @@ word_counts = count_words(word_arr)
 
 top_words = Hash[*word_counts.sort_by { |k,v| -v }[0..9].flatten]
 top_words.sort{|a,b| -(a[1]<=>b[1])}.each { |elem|
+  puts "#{elem[1]} -> #{elem[0]}<p>" 
+}
 %>
-  <%= puts "#{elem[1]} -> #{elem[0]}<p>" %>
-<% } %>
 
 
 <p><a href="/static_pages/home">Try again</a>

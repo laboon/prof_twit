@@ -13,6 +13,7 @@ def get_timeline(username)
     last_id = timeline[0].id
     timeline.each do|st|
       all_text = all_text + "#{st.text}"
+      # puts "#{st.text}"
     end
   end
   return all_text
@@ -33,35 +34,38 @@ def count_words ( arr )
       val = words[word]
       val += 1
       words[word] = val
-      
+      # puts "word repeated " + word + "( " + val.to_s() + " )"
     else 
-      
+      # puts "new word " + word
       words[word] = 1
     end
   }
   return words
 end
 
-def printVals
-  username = params[:twitname]
-  
-  timeline_text = get_timeline(username)
-  
-  
-  word_arr = timeline_text.split
-  word_arr = clear_punc(word_arr)
-  word_counts = count_words(word_arr)
-  
-  top_words = Hash[*word_counts.sort_by { |k,v| -v }[0..9].flatten]
+def print_stats (word_counts)
   to_return = ""
+  top_words = Hash[*word_counts.sort_by { |k,v| -v }[0..9].flatten]
+  puts top_words
   top_words.sort{|a,b| -(a[1]<=>b[1])}.each { |elem|
-    toReturn += "#{elem[1]} -> #{elem[0]}<p>" 
+    to_return = to_return + "#{elem[1]} -> #{elem[0]}<br>"
   }
+  # puts to_return
   return to_return
 end
 
+username = "params[:twitname]
+
+timeline_text = get_timeline(username)
+
+# puts all_text
+word_arr = timeline_text.split
+word_arr = clear_punc(word_arr)
+word_counts = count_words(word_arr)
+tmp = print_stats(word_counts)
+
 %>
-<%= printVals() %>  
+<%= tmp %>  
 
 <p><a href="/static_pages/home">Try again</a>
 

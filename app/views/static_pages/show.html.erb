@@ -1,5 +1,63 @@
 <html>
 <h1>Results</h1>
-Results.. <%= params[:twitname] %>
+Results for <%= params[:twitname] %><p>
+<%
+require 'rubygems'
+require 'twitter'
+
+def get_timeline(username)
+
+  timeline = Twitter.user_timeline(username)
+  all_text = ""
+  unless timeline.empty?
+    last_id = timeline[0].id
+    timeline.each do|st|
+      all_text = all_text + "#{st.text}"
+    end
+  end
+  return all_text
+end
+
+def clear_punc (arr)
+  toReturn = []
+  arr.each { |elem| toReturn.push(elem.gsub!(/[^0-9a-z]*/i, '')) }
+  return toReturn
+end
+
+def count_words ( arr )
+  words = Hash.new
+  arr.each {
+    |word|
+    if (words.has_key?(word))
+      
+      val = words[word]
+      val += 1
+      words[word] = val
+      
+    else 
+      
+      words[word] = 1
+    end
+  }
+  return words
+end
+
+def print_stats (word_counts)
+  top_words = Hash[*word_counts.sort_by { |k,v| -v }[0..9].flatten]
+  top_words.sort{|a,b| -(a[1]<=>b[1])}.each { |elem|
+  puts "#{elem[1]} -> #{elem[0]}<p>"
+}
+end
+username = params[:twitname]
+
+timeline_text = get_timeline(username)
+
+
+word_arr = timeline_text.split
+word_arr = clear_punc(word_arr)
+word_counts = count_words(word_arr)
+print_stats(word_counts)
+%>
+
 <p><a href="/static_pages/home">Try again</a>
 </html>

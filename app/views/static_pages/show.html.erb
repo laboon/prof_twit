@@ -1,7 +1,7 @@
-<html>
+
 <h1>Results</h1>
 Results for <%= params[:twitname] %><p>
-<%=
+<%
 require 'rubygems'
 require 'twitter'
 
@@ -42,22 +42,26 @@ def count_words ( arr )
   return words
 end
 
+def printVals
+  username = params[:twitname]
+  
+  timeline_text = get_timeline(username)
+  
+  
+  word_arr = timeline_text.split
+  word_arr = clear_punc(word_arr)
+  word_counts = count_words(word_arr)
+  
+  top_words = Hash[*word_counts.sort_by { |k,v| -v }[0..9].flatten]
+  to_return = ""
+  top_words.sort{|a,b| -(a[1]<=>b[1])}.each { |elem|
+    toReturn += "#{elem[1]} -> #{elem[0]}<p>" 
+  }
+  return to_return
 end
-username = params[:twitname]
 
-timeline_text = get_timeline(username)
-
-
-word_arr = timeline_text.split
-word_arr = clear_punc(word_arr)
-word_counts = count_words(word_arr)
-
-top_words = Hash[*word_counts.sort_by { |k,v| -v }[0..9].flatten]
-top_words.sort{|a,b| -(a[1]<=>b[1])}.each { |elem|
-  puts "#{elem[1]} -> #{elem[0]}<p>" 
-}
 %>
-
+<%= printVals() %>  
 
 <p><a href="/static_pages/home">Try again</a>
-</html>
+

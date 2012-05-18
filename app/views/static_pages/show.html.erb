@@ -45,7 +45,7 @@ end
 
 def print_stats (word_counts)
   to_return = ""
-  top_words = Hash[*word_counts.sort_by { |k,v| -v }[0..9].flatten]
+  top_words = Hash[*word_counts.sort_by { |k,v| -v }[0..19].flatten]
   puts top_words
   top_words.sort{|a,b| -(a[1]<=>b[1])}.each { |elem|
     to_return = to_return + " #{elem[0]} : #{elem[1]} instances<br>"

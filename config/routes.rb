@@ -1,7 +1,10 @@
 ProfTwit::Application.routes.draw do
+  #get "static_pages/show"
   get "static_pages/home"
   get "static_pages/help"
-
+  get '/static_pages/show/:twitname' do
+    erb :show, :locals => {:twitname => params[:twitname]}
+  end 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

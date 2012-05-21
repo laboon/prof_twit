@@ -3,8 +3,17 @@
 <%
 require 'rubygems'
 require 'twitter'
+require 'stemmer'
+require 'classifier'
 
 def get_timeline(username)
+
+  Twitter.configure do |config|
+    config.consumer_key = "3RmX0BhVrXNSA9f78pgmg"
+    config.consumer_secret = "LyuA5lxjqrAqmOLPwjJn7F0vBuwpz6XSBu5MAWDUg"
+    config.oauth_token = "566768379-hSaPH2WKegxtAhURB1zTGOq0OVtbgR2h6dAqwLUx"
+    config.oauth_token_secret = "cLklSfeIyYLDouFJpkmc4ZfVIEwNaU6Jeo06f2EoDyQ"
+  end
 
   timeline = Twitter.user_timeline(username)
   all_text = ""

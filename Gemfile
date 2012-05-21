@@ -28,7 +28,7 @@ end
 gem 'jquery-rails'
 
 group :production do
-  gem 'pg', '>= 0.12.2'
+  # gem 'pg', '>= 0.12.2'
   gem 'stemmer'
 end
 

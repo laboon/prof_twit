@@ -120,10 +120,10 @@ b = Classifier::Bayes.new 'Professional', 'Unprofessional'
 <p>Classification for <%= params[:twitname] %> :
 
 <strong><%=
-#b.classify(timeline_text)
+b.classify(timeline_text)
 %></strong></p>
 <p>(More details) <%=
-#b.classifications(timeline_text)
+b.classifications(timeline_text)
 %> </p>
 
 <h2>Text Data</h2>

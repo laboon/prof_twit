@@ -118,10 +118,14 @@ b = Classifier::Bayes.new 'Professional', 'Unprofessional'
 #b.train_unprofessional "Lil dry stank pussy: EveryGirl be fake horny wen it rain knowin that shyt don't rain"
 %>
 <p>Classification for <%= params[:twitname] %> :
-<!---
-<strong><%= b.classify(timeline_text) %></strong></p>
-<p>(More details) <%= b.classifications(timeline_text) %> </p>
--->
+
+<strong><%=
+#b.classify(timeline_text)
+%></strong></p>
+<p>(More details) <%=
+#b.classifications(timeline_text)
+%> </p>
+
 <h2>Text Data</h2>
 The twenty most-used words of <%= params[:twitname] %><p>
 <%= raw tmp %>  

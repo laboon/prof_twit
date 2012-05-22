@@ -78,6 +78,9 @@ tmp = print_stats(word_counts)
 <h2>Classification</h2>
 
 <%
+require 'stemmer'
+require 'classifier'
+
 b = Classifier::Bayes.new 'Professional', 'Unprofessional'
 
 # Professional

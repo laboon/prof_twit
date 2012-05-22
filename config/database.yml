@@ -1,15 +1,9 @@
-# SQLite version 3.x
-  gem install pg
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-gem 'pg'
-
 development:
   adapter: postgresql
   encoding: unicode
-  database: prof_twit
+  database: twitdb
   pool: 5
-  username: twit
+  username: postgres 
   password: 
 
 # Warning: The database defined as "test" will be erased and
@@ -18,15 +12,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: prof_twit
+  database: twitdb
   pool: 5
-  username: twit
+  username: postgres 
   password: 
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: prof_twit
+  database: twitdb 
   pool: 5
-  username: twit
+  username: postgres 
   password: 

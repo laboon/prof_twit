@@ -5,7 +5,7 @@ gem 'twitter'
 gem 'heroku'
 gem 'thin'
 gem 'classifier', '1.3.3'
-gem 'stemmer', '1.0.1'
+gem 'stemmer'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -142,7 +142,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.3)
   sass-rails (~> 3.2.3)
-  stemmer (= 1.0.1)
+  stemmer
   thin
   twitter
   uglifier (>= 1.0.3)

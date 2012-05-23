@@ -120,14 +120,117 @@ b.train_unprofessional "If idk U or U Dnt Rep. Dnt Tlk to Me Unless U Got 50k+ F
 b.train_unprofessional "Niqqaz be saying the same shyt nawadayz, u can't even figure out who's serious anymore"
 b.train_unprofessional "Lil dry stank pussy: EveryGirl be fake horny wen it rain knowin that shyt don't rain"
 %>
-<p>Classification for <%= params[:twitname] %> :
+<p>Classifications for <%= params[:twitname] %> :</p>
 
+Professional?: 
 <strong><%=
 b.classify(timeline_text)
+%></strong>
+
+<%
+require 'stemmer'
+require 'classifier'
+
+ageClassifier = Classifier::Bayes.new 'Young', 'Adult'
+
+# Young ( < 25)
+
+ageClassifier.train_young "Congrats to all the rich beliebers who can afford to spend $450 to meet Justin Bieber. Ill just sit here and stare at posters."
+ageClassifier.train_young "I'M LIKE CRYING AT THIS OMG IT'S SO BEAUTIFUL. JUSTIN FT BELIEBERS- BABY"
+ageClassifier.train_young "School sucks without all the seniors here"
+ageClassifier.train_young "you just have to get through high school, because high school sucks for anyone who's the least bit different"
+ageClassifier.train_young "yo real talk school sucks big ass monkey balls"
+ageClassifier.train_young "when school elections come up i literally do not care since the school sucks and nobody can change that"
+ageClassifier.train_young "School sucks more dick than the sluts that attend it."
+ageClassifier.train_young "I don't understand why people hate great rappers. It's like if they don't rap about drugs,hoes,or clothes then they won't listen. smh"
+ageClassifier.train_young "Someone needs to tell the mcqueens u prob won't go to prison for growin a bit o ganja!"
+ageClassifier.train_young "alcohol wasted blunt ganja drunk soooo drunk so drunk"
+ageClassifier.train_young "Dear Heavenly Ganja, I pray that a beautiful girl comes over to smoke tree. and watch workaholics with me all day. In Jah's we pray, Amen."
+ageClassifier.train_young "I'm gonna have to light up this ganja and hit up some old wrestling. I'm not talking Raw I'm talkin Raw is War and WCW Nitro"
+ageClassifier.train_young "making friends is so much easier when I've had alcohol. why can't I just be drunk all the time!?"
+ageClassifier.train_young "Wanna go chill and at beach and get drunk"
+
+# Adult ( > 25 )
+ageClassifier.train_adult "The lesson of Yahoo is that a company with poor leadership is inevitably doomed. bunch of engineers in a room is not leadership."
+ageClassifier.train_adult "I can switch the hell out of a slide deck in PowerPoint."
+ageClassifier.train_adult "Wow, insurancezebra looks great. Great UX, tackling a huge pain point (comparing auto insurance rates)."
+ageClassifier.train_adult "None of those lectures were as opaque as anything these academics said."
+ageClassifier.train_adult "A South Korean Zodiac, about the country's first serial killer Seongyong Cho's review"
+ageClassifier.train_adult "my son and i are spending the night in the pittsburgh zoo tonight. would have loved that when i was young."
+ageClassifier.train_adult "Our brains unconsciously control our preferences. CMU researchers launch start-up to help online video market"
+ageClassifier.train_adult "SpaceX employees watch successful stage separation outside mission control in Hawthorne, CA. "
+ageClassifier.train_adult "Glad it's not just me!! :) How've you been?!??! I missed you at the baby shower!"
+ageClassifier.train_adult "Remember: join the team today at on FB to discuss Gabrielle Hamilton's book Blood, Bones & Butter"
+ageClassifier.train_adult "Holy moley there are a lot of text editing apps for iOS! I'm surprised the market can support that many different options."
+ageClassifier.train_adult "Who's going to IW's Investor Day and Annual Meeting? Nice preview in the PG"
+ageClassifier.train_adult "Downloaded E.J. Dionne's new book to my Kindle-- I cannot wait to start reading it tonight"
+ageClassifier.train_adult "The biggest mistake people are making is trying to define light table. It is not one specific thing. It is anything."
+ageClassifier.train_adult "Two new articles have been added to the site! The articles are from two contributors and take a look at the"
+
+%>
+
+<p>Age : <strong>
+<%=
+ageClassifier.classify(timeline_text)
+%>
+</strong></p>
+
+<%
+require 'stemmer'
+require 'classifier'
+
+genderClassifier = Classifier::Bayes.new 'Male', 'Female'
+
+# Male
+genderClassifier.train_male "The lesson of Yahoo is that a company with poor leadership is inevitably doomed. bunch of engineers in a room is not leadership."
+genderClassifier.train_male "I can switch the hell out of a slide deck in PowerPoint."
+genderClassifier.train_male "Wow, insurancezebra looks great. Great UX, tackling a huge pain point (comparing auto insurance rates)."
+genderClassifier.train_male "None of those lectures were as opaque as anything these academics said."
+genderClassifier.train_male "A South Korean Zodiac, about the country's first serial killer Seongyong Cho's review"
+genderClassifier.train_male "[in Python] the conversion from int to float can't fail, while byte string to unicode string can"
+genderClassifier.train_male "WellÉ booked everything and paid for @SteelCityRuby conference. First conference should be awesome."
+genderClassifier.train_male "Feeling heavy? If you cram a herd of 50-million elephants into a thimble, you get the density of a Pulsar. I'm just saying."
+genderClassifier.train_male "Brett Lawrie plays third base with like a free safety, only with better hands."
+genderClassifier.train_male "5 years ago today, I wrote a depressing column about the Celts losing the '07 Lottery (and everything being hopeless)."
+genderClassifier.train_male "football baseball soccer hockey basketball game Steelers Pirates Cowboys Mets Pen Penguins"
+genderClassifier.train_male "North Carolina and Kentucky are #1 and #2 in the standings in something other than college hoops"
+genderClassifier.train_male "this is one of the craziest overtime periods i've ever seen...and i've seen a few."
+genderClassifier.train_male "This is one of the best Stanley Cup Playoff games in awhile. Fast pace, Engaged crowd, lots of energy and competitiveness."
+genderClassifier.train_male "In an NBA best-of-7 series, the team that has won Game 5 when the series is tied 2-2 has gone on to win the series 83.3 percent of the time."
+genderClassifier.train_male "Just had a chat with berlin adler and former @SussexThunder player dave lawley ahead of his upcoming EFL clash with London blitz. Top bloke."
+genderClassifier.train_male "Programmers are celebrating dependence these days. Efficient, but can't be without even medium-term flaws."
+genderClassifier.train_male "Will I make it to the theater before the rain? We shall see."
+genderClassifier.train_male "Facts do not cease to exist because they are ignored. ~ Aldous Huxley ( Writer, 1894 Anno Domini - 1963 AD )"
+genderClassifier.train_male "Amusing how technical people always talk in absolutes. Technically, most things are not."
+genderClassifier.train_male "I hate when flights aren't in the morning. I'm an up-and-on-the-road kind of person."
+
+# Female
+genderClassifier.train_female "Petting kitty is a good stress reliever when I want to bash my ex's face in."
+genderClassifier.train_female "Glad it's not just me!! :) How've you been?!??! I missed you at the baby shower!"
+genderClassifier.train_female "Oof! 20 mile backup on 95N? SO glad I'm already at work. What a mess :( Hope everyone is okay out there! "
+genderClassifier.train_female "Psyched I found out my pilates studio would be closed on Monday before everyone else. I was able to get into a different class Tues! YAY!"
+genderClassifier.train_female "YAY! Tomorrow is Clean Up Day at work, which means it's one of the two days per year we can wear jeans! :)"
+genderClassifier.train_female "Like zumba? Dance your butt off for a good cause (new playground for my Read Aloud kids) June 2 in Alexandria! Flyer"
+genderClassifier.train_female "Cheetahs! @NationalZoo has two new cubs http://wamu.fm/LEh7mE Their cuteness is amplified by their difficult first few weeks"
+genderClassifier.train_female "Yes, very cute indeed! I spotted someone in the office wearing it this week, too. Stylish minds think alike! :) "
+genderClassifier.train_female "As comfy as a hoodie, yet you'll look like a million bucks. What is this fantastical garment you ask? A maxi!"
+genderClassifier.train_female "Diamonds are fine, but when it comes to chic, colorful layering, this perfect cardi is a girl's best friend"
+genderClassifier.train_female "Text from mom before heading to Europe: Omg! U r going places my beautiful and smart daughter. By the way, google won today"
+genderClassifier.train_female "Omg really cute boy just smiled at me *faints*"
+genderClassifier.train_female "Omg, I'm still so upset about Justin not coming here. Seriously FML. Like wtf?! He's from LONDON +STRATFORD, therefore he should come here!"
+genderClassifier.train_female "Omg, this is seriously the cutest thing ever. Jelena who? It's all about JELLEN."
+genderClassifier.train_female "Crying at year in the making, omg I remember this so much everyone was in tears omgg"
+genderClassifier.train_female "Double OMG. See all the tweets that have already being turned into a scarf! Is yours there?"
+genderClassifier.train_female "in half past nine and it's 17 degrees outside!!! OMG IT'S SUMMER NOW!"
+genderClassifier.train_female "omg the part were harry cries I can't even :("
+genderClassifier.train_female "I'M LIKE CRYING AT THIS OMG IT'S SO BEAUTIFUL. JUSTIN FT BELIEBERS- BABY"
+genderClassifier.train_female "#bieber Justin's leading lady in every music video he does is really lucky!!:))) #RT if you're jealous:)"
+
+%>
+
+<p>Gender: <strong><%=
+genderClassifier.classify(timeline_text)
 %></strong></p>
-<p>(More details) <%=
-b.classifications(timeline_text)
-%> </p>
 
 <h2>Text Data</h2>
 The twenty most-used words of <%= params[:twitname] %><p>
